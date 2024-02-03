@@ -2,7 +2,7 @@
 
 set -euo pipefail
 
-RAILWAY_BINARY="./"
+RAILWAY_BINARY="/tmp"
 RAILWAY_VERSION="1.8.4"
 
 # Install the Railway CLI
@@ -17,7 +17,7 @@ do
     parameterized_name=$(echo $project | tr '-' '_')
     branch_name="$(git branch --show-current)"
     # this is the key by which the required token is present in the secrets file
-    env_variable="RAILWAY_TEST_TOKEN_PROD"
+    env_variable="NX_API_PROXY_TOKEN"
     # convert the whole thing to upper case
     echo "env_variable: '$env_variable'..."
     final_env_variable=$(echo "$env_variable" | awk '{print toupper($0)}')
