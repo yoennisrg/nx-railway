@@ -14,9 +14,6 @@ jobs:
         with:
           fetch-depth: 0
 
-      - uses: ./.github/actions/setup
-        name: Setup environment
-
       - name: Set base commit hash
         run: |
           #!/usr/bin/env bash
