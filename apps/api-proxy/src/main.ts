@@ -18,6 +18,6 @@ async function bootstrap() {
     `🚀 Application is running on: http://localhost:${port}/${globalPrefix}`
   );
 }
-console.log('test 6')
+console.log('test 1')
 
 bootstrap();
