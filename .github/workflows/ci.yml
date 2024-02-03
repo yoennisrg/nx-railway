@@ -37,6 +37,6 @@ jobs:
           RAILWAY_TOKEN: ${{ secrets.RAILWAY_TEST_TOKEN_PROD }}
 
       - run: |
-          npx nx affected -t lint test build --output-style=static | while read -r project; do
+          npx nx projects --type app --affected --json | while read -r project; do
             echo "Deploying $project";
           done
