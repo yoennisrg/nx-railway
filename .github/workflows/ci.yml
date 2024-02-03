@@ -46,12 +46,8 @@ jobs:
       
       - name: Deploy affected projects
         run: |
-          affected_projects="${{ steps.get-affected-projects.outputs.projects }}"
-          IFS=',' read -ra projects_array <<< "$affected_projects"
-          for project in "${projects_array[@]}"; do
-            project_name=$(echo "$project" | tr -d '[]')
-            echo "Deploying $project_name"
-            railway up -s $project_name"  --detach --verbose
+          for project in "${{ steps.get-affected-projects.outputs.projects }}"; do
+            echo "Deploying $project"
             done
         env:
           RAILWAY_TOKEN: ${{ secrets.RAILWAY_TEST_TOKEN_PROD }}
