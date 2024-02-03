@@ -2,7 +2,7 @@
 
 set -euo pipefail
 
-RAILWAY_BINARY="/tmp"
+RAILWAY_BINARY="/tmp/railway"
 RAILWAY_VERSION="1.8.4"
 
 # Install the Railway CLI
