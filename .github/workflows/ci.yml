@@ -32,19 +32,3 @@ jobs:
 
       - run: npx nx-cloud record -- nx format:check
       - run: npx nx affected -t lint test build
-      - name: Install Railway
-        run: npm i -g @railway/cli
-
-      - name: Services status
-        run: railway status
-        env:
-          RAILWAY_TOKEN: ${{ secrets.RAILWAY_TEST_TOKEN_PROD }}
-      - run: npx nx affected -t lint test build --plain | awk '{print $1}' | while read -r project; do
-          echo "Deploying $project";
-          - name: Install Railway
-            run: npm i -g @railway/cli
-          - name: Deploy
-            run: railway up --project=$project --detach
-            env:
-              RAILWAY_TOKEN: ${{ secrets.RAILWAY_TEST_TOKEN_PROD }}
-        done
