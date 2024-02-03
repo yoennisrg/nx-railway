@@ -1,0 +1,24 @@
+{
+  "name": "api-proxy",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "apps/api-proxy/src",
+  "projectType": "application",
+  "targets": {
+    "serve": {
+      "executor": "@nx/js:node",
+      "defaultConfiguration": "development",
+      "options": {
+        "buildTarget": "api-proxy:build"
+      },
+      "configurations": {
+        "development": {
+          "buildTarget": "api-proxy:build:development"
+        },
+        "production": {
+          "buildTarget": "api-proxy:build:production"
+        }
+      }
+    }
+  },
+  "tags": []
+}
