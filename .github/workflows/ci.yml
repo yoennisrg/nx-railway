@@ -36,7 +36,19 @@ jobs:
         env:
           RAILWAY_TOKEN: ${{ secrets.RAILWAY_TEST_TOKEN_PROD }}
 
-      - run: |
-          npx nx show projects --type app --affected --json | while read -r project; do
-            echo "Deploying $project";
+      - name: Get affected projects
+        id: get-affected-projects
+        run: |
+          projects=$(npx nx show projects --type app --affected --json)
+          echo "Affected projects: $projects"
+          echo "::set-output name=projects::$projects"
+      
+      - name: Deploy affected projects
+        run: |
+          affected_projects="${{ steps.get-affected-projects.outputs.projects }}"
+          IFS=',' read -ra projects_array <<< "$affected_projects"
+          for project in "${projects_array[@]}"; do
+            echo "Deploying $project"
           done
+        env:
+          RAILWAY_TOKEN: ${{ secrets.RAILWAY_TEST_TOKEN_PROD }}
