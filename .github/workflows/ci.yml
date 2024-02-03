@@ -51,7 +51,7 @@ jobs:
           for project in "${projects_array[@]}"; do
             project_name=$(echo "$project" | tr -d '[]')
             echo "Deploying $project_name"
-            railway up $project_name"  --detach --verbose
+            railway up -s $project_name"  --detach --verbose
             done
         env:
           RAILWAY_TOKEN: ${{ secrets.RAILWAY_TEST_TOKEN_PROD }}
