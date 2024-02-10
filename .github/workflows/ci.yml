@@ -59,8 +59,8 @@ jobs:
             cp Dockerfile $project_path
             cp package.json package-lock.json $project_path
             cd $project_path
-            echo "Deploying $project_name"
             railway up
+            echo "Deploying $project_name"
             cd ${{ env.WORKSPACE_DIR }}
             done
         env:
