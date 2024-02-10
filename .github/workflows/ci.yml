@@ -12,6 +12,9 @@ permissions:
   actions: read
   contents: read
 
+env:
+  WORKSPACE_DIR: ${{ github.workspace }}
+
 jobs:
   main:
     runs-on: ubuntu-latest
@@ -50,7 +53,14 @@ jobs:
           IFS=',' read -ra projects_array <<< "$affected_projects"
           for project in "${projects_array[@]}"; do
             project_name=$(echo "$project" | tr -d '[]')
+            project_path=${{ env.WORKSPACE_DIR }}/dist/apps/$project_name
             npx nx run $project_name:test
+            npx nx run $project_name:lint
+            npx nx build $project_name:production
+            cp Dockerfile project_path
+            cd $project_path
+            ls
+            cd ${{ env.WORKSPACE_DIR }}
             echo "Deploying $project_name"
 
             done
