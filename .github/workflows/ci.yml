@@ -50,7 +50,7 @@ jobs:
           IFS=',' read -ra projects_array <<< "$affected_projects"
           for project in "${projects_array[@]}"; do
             project_name=$(echo "$project" | tr -d '[]')
-            npx nx $project_name:test
+            npx nx run $project_name:test
             echo "Deploying $project_name"
 
             done
