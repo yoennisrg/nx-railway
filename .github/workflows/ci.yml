@@ -57,12 +57,11 @@ jobs:
             npx nx run $project_name:lint
             npx nx run $project_name:build:production
             cp Dockerfile $project_path
+            cp package.json package-lock.json $project_path
             cd $project_path
             echo "Deploying $project_name"
             railway up
             cd ${{ env.WORKSPACE_DIR }}
-            
-
             done
         env:
           RAILWAY_TOKEN: ${{ secrets.RAILWAY_TEST_TOKEN_PROD }}
