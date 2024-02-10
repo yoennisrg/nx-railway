@@ -58,10 +58,10 @@ jobs:
             npx nx run $project_name:build:production
             cp Dockerfile $project_path
             cd $project_path
-            ls
-            cd ${{ env.WORKSPACE_DIR }}
             echo "Deploying $project_name"
             railway up
+            cd ${{ env.WORKSPACE_DIR }}
+            
 
             done
         env:
