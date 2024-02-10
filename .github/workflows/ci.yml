@@ -60,7 +60,7 @@ jobs:
             cp package.json package-lock.json $project_path
             cd $project_path
             echo "Deploying $project_name"
-            railway up --service=$project_name
+            railway up
             cd ${{ env.WORKSPACE_DIR }}
             done
         env:
