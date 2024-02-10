@@ -48,7 +48,7 @@ jobs:
         run: |
           affected_projects="${{ steps.get-affected-projects.outputs.projects }}"
           IFS=',' read -ra projects_array <<< "$affected_projects"
-          for project in "${projects_array[@}"; do
+          for project in "${projects_array[@]}"; do
             project_name=$(echo "$project" | tr -d '[]')
             npx nx build $project_name:test
             echo "Deploying $project_name"
