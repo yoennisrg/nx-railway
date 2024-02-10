@@ -56,7 +56,7 @@ jobs:
             project_path=${{ env.WORKSPACE_DIR }}/dist/apps/$project_name
             npx nx run $project_name:test
             npx nx run $project_name:lint
-            npx nx build $project_name:production
+            npx nx run $project_name:build:production
             cp Dockerfile project_path
             cd $project_path
             ls
