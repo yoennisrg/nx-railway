@@ -6,7 +6,7 @@ on:
       - main
   pull_request:
     paths:
-      - apps/api-proxy/**
+      - apps/**
 
 permissions:
   actions: read
