@@ -61,6 +61,7 @@ jobs:
             ls
             cd ${{ env.WORKSPACE_DIR }}
             echo "Deploying $project_name"
+            railway up
 
             done
         env:
